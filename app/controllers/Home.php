@@ -15,14 +15,13 @@ class Home extends Controller
 
         public function indexAction(){
             $db = DB::getInstance();
-            $fields = [
-                'fname'=>'Toni2',
-                'lname'=>'Parham2',
-                'email'=>'Parham2@ukr.net'
-            ];
-           $columns = $db->get_columns('contacts2');
+            $contacts =  $db->findFirst('contacts2',[
+                'conditions'=>['lname = ?'],
+                'bind'=>['white']
 
-            var_dump($columns);
+            ]);
+
+            var_dump($contacts);
 
             $this->view->render('home/index');
         }
