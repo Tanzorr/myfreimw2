@@ -14,15 +14,6 @@ class Home extends Controller
         }
 
         public function indexAction(){
-            $db = DB::getInstance();
-            $contacts =  $db->findFirst('contacts2',[
-                'conditions'=>['lname = ?'],
-                'bind'=>['white']
-
-            ]);
-
-            var_dump($contacts);
-
             $this->view->render('home/index');
         }
 
