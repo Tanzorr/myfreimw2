@@ -17,3 +17,9 @@ define('DB_NAME','myfreim');
 define('DB_USER','root');
 define('DB_PASSWORD','root');
 define('DB_HOST','localhost');
+
+define('CURRENT_USER_SESSION_NAME','qwerrtyuiop');// session name for logged in user
+
+define('REMEMBER_ME_COOKIE_NAME','ASDFGHJKL12345');// cooke name logged in  user remember me
+
+define('REMEMBER_ME_COOKIE_EXPIRY',604800);// time and second for remember me cooke live (30 days)
