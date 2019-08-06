@@ -15,13 +15,14 @@ class Model
     {
         $this->_db =DB::getInstance();
         $this->_table =$table;
-        $this->_setTableColums();
+        $this->_setTableColumns();
         $this->_modulName = str_replace(' ','',ucwords(str_replace('_',' ',$this->_table)) );
     }
 
     public  function _setTableColumns(){
-        $columns =  $this->get_colums();
+        $columns =  $this->get_columns();
         foreach ($columns as $column){
+            $columnName = $column->Field;
             $this->_columnNames[] = $column->Field;
             $this->{$columnName} = null;
         }
@@ -30,6 +31,22 @@ class Model
     public  function get_columns(){
         return $this->_db->get_columns($this->_table);
     }
+
+    protected function _softDeleteParams($params){
+        if($this->_softDelete){
+            if(array_key_exists('conditions',$params)){
+                if(is_array($params['conditions'])){
+                    $params['conditions'][] = "deleted != 1";
+                } else {
+                    $params['conditions'] .= " AND deleted != 1";
+                }
+            } else {
+                $params['conditions'] = "deleted != 1";
+            }
+        }
+        return $params;
+    }
+
 
     public  function find($params = []){
             $results = [];
@@ -42,11 +59,10 @@ class Model
             return $results;
     }
 
-    public  function  findFirst($params= []){
-        $resultQuery = $this->_db->findFirst($this->_table, $params);
-        $result =  new $this->_modulName($this->_table);
-        $result->populateObjData($resultQuery);
-        return $result;
+    public function findFirst($params = []) {
+        $params = $this->_softDeleteParams($params);
+        $resultQuery = $this->_db->findFirst($this->_table, $params,get_class($this));
+        return $resultQuery;
     }
 
     public  function findById($id){
@@ -91,7 +107,7 @@ class Model
 
     public function data(){
         $data =  new stdClass();
-        foreach ($this->_columnNames as $colum){
+        foreach ($this->_columnNames as $column){
             $data->column = $this->column;
         }
         return $data;

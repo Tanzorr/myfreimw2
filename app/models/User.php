@@ -6,7 +6,7 @@
  * Time: 22:05
  */
 
-class Useer extends Model
+class User extends Model
 {
     private $_isLoggedIn, $_sessionName, $_cookieName, $_confirm;
     public static $currentLoggedInUser = null;

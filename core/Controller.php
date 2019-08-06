@@ -17,7 +17,7 @@ class Controller extends Application {
         parent::__construct();
         $this->_controller = $controller;
         $this->_action = $action;
-        $this->view =new View();
+        $this->view = new View();
     }
 
     protected function load_model($model){

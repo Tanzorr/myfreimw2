@@ -6,14 +6,14 @@
     <div class="row justify-content-center">
 
         <div class="col-md-6 coll-md-offset-3 well">
-            <form action="" class="form">
+            <form action="" class="form" method="post">
                 <div class="form-group">
                     <label for="username">username</label>
                     <input type="text" name="username" id="username" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="username">password</label>
-                    <input type="text" name="password" id="password" class="form-control">
+                    <input type="password" name="password" id="password" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="remember_me">Remeber me
