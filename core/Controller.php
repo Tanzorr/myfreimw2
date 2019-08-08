@@ -26,4 +26,11 @@ class Controller extends Application {
         }
     }
 
+//    protected function load_model($model) {
+//        $modelPath = 'App\Models\\' . $model;
+//        if(class_exists($modelPath)) {
+//            $this->{$model.'Model'} = new $modelPath();
+//        }
+//    }
+
 }

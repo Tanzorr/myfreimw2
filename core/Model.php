@@ -8,7 +8,7 @@
 
 class Model
 {
-    protected $_db, $_table, $_modulName, $_softDelete = false, $_columnNames = [];
+    protected $_db, $_table, $_modelName, $_softDelete = false, $_columnNames = [];
     public $id;
 
     public function __construct($table)
@@ -52,7 +52,7 @@ class Model
             $results = [];
             $resultsQuery =  $this->_db->find($this->_table, $params);
             foreach ($resultsQuery as $result){
-                $obj = new $this->_modulName($this->_table);
+                $obj = new $this->_modelName($this->_table);
                 $obj->populateObjData($result);
                 $result[] = $obj;
             }
@@ -60,9 +60,16 @@ class Model
     }
 
     public function findFirst($params = []) {
-        $params = $this->_softDeleteParams($params);
-        $resultQuery = $this->_db->findFirst($this->_table, $params,get_class($this));
-        return $resultQuery;
+//        $params = $this->_softDeleteParams($params);
+//        $resultQuery = $this->_db->findFirst($this->_table, $params,get_class($this));
+//        return $resultQuery;
+        $resultQuery = $this->_db->findFirst($this->_table, $params);
+        $result =  new  $this->_modelName($this->_table);
+        if ($resultQuery){
+            $result->populateObjData($resultQuery);
+        }
+
+        return $result;
     }
 
     public  function findById($id){
@@ -75,6 +82,7 @@ class Model
             $fildes[$column] =  $this->$column;
         }
         //detemine whether to update or insert
+
         if(property_exists($this,'id') && $this->id !== ''){
             return$this->update($this->id, $fildes);
         }else{

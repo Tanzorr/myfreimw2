@@ -26,7 +26,7 @@ class Session
         }
     }
 
-    public static function ungent_no_version(){
+    public static function uagent_no_version(){
         $uagent = $_SERVER['HTTP_USER_AGENT'];
         $regx = '/\/[a-zA-Z0-9.]+/';
         $newString = preg_replace($regx, '', $uagent);

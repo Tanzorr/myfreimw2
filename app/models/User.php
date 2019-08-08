@@ -18,6 +18,7 @@ class User extends Model
         $this->_sessionName = CURRENT_USER_SESSION_NAME;
         $this->_cookieName = REMEMBER_ME_COOKIE_NAME;
         $this->_softDelete = true;
+        $this->_modelName = 'User';
         if($user != '') {
             if(is_int($user)) {
                 $u = $this->_db->findFirst('users',['conditions'=>'id = ?', 'bind'=>[$user]],'App\Models\Users');
@@ -32,7 +33,8 @@ class User extends Model
         }
     }
         public function  findByUsername($username){
-            return $this->findFirst(['conditions'=>"username = ?", 'bild'=>[$username]]);
+            var_dump($username);
+            return $this->findFirst(['conditions'=>"username = ?", 'bind'=>[$username]]);
             }
 
         public function login($rememberMe=false) {
