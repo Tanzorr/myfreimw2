@@ -31,7 +31,8 @@ class Register extends Controller
                  ],
                 'password'=>[
                     'display'=>'Password',
-                    'required'=>true
+                    'required'=>true,
+                    'min'=>6
                    ]
              ]);
              if ($validation->passed()){
@@ -41,12 +42,24 @@ class Register extends Controller
                       $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true :false;
                     $user->login($remember);
                     Router::redirect('/');
-                }
+                }else{
+                      $validation->addError("There is an arror wit your username or password.");
+                  }
              }
         }
 
-
+        $this->view->displayErrors =  $validation->displayErrors();
         $this->view->render('register/login');
+    }
+
+    public function logoutAction(){
+        $user = currentUser();
+
+        if ($user){
+            $user->logout();
+        }
+
+        Router::redirect('login');
     }
 
 }

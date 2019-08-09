@@ -16,3 +16,8 @@ function did($data){
 function sanitize($dirty){
     return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
 }
+
+
+function currentUser(){
+    return User::currentLoggedUser();
+}

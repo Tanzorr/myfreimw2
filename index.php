@@ -10,6 +10,7 @@ define('ROOT', dirname(__FILE__));
 $url = isset($_SERVER['REQUEST_URI']) ? explode('/', ltrim($_SERVER['REQUEST_URI'], '/')):[];
 require_once (ROOT.DS.'core'.DS.'Autoload.php');
 require_once (ROOT.DS.'config'.DS.'config.php');
+require_once (ROOT.DS.'app'.DS.'lib'.DS.'helpers'.DS.'functions.php');
 
 //$db = DB::getInstance();
 

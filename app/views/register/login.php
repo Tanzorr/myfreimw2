@@ -7,6 +7,7 @@
 
         <div class="col-md-6 coll-md-offset-3 well">
             <form action="/register/login" class="form" method="post">
+                <div class=""><?= $this->displayErrors ?></div>
                 <div class="form-group">
                     <label for="username">username</label>
                     <input type="text" name="username" id="username" class="form-control">
