@@ -27,12 +27,16 @@ class Register extends Controller
              $validation->check($_POST,[
                  'username'=>[
                      'display'=>'Username',
-                     'required'=>true
+                     'required'=>true,
+                     'max'=>10,
+                     'matches'
+
                  ],
                 'password'=>[
                     'display'=>'Password',
                     'required'=>true,
-                    'min'=>6
+                    'min'=>6,
+                    'matches'
                    ]
              ]);
              if ($validation->passed()){
@@ -53,6 +57,7 @@ class Register extends Controller
     }
 
     public function logoutAction(){
+
         $user = currentUser();
 
         if ($user){

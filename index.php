@@ -12,8 +12,10 @@ require_once (ROOT.DS.'core'.DS.'Autoload.php');
 require_once (ROOT.DS.'config'.DS.'config.php');
 require_once (ROOT.DS.'app'.DS.'lib'.DS.'helpers'.DS.'functions.php');
 
-//$db = DB::getInstance();
 
+if(!Session::exist(CURRENT_USER_SESSION_NAME) && Cookie::exists(REMEMBER_ME_COOKIE_NAME)){
+    User::loginUserFromCooke();
+}
 
 
 
