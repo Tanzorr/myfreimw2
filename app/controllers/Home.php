@@ -14,6 +14,7 @@ class Home extends Controller
         }
 
         public function indexAction(){
+              did($_SESSION);
 
             $this->view->render('home/index');
         }

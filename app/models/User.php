@@ -57,23 +57,26 @@ class User extends Model
         }
 
         public static function loginUserFromCooke(){
-            $user_session_model =  new UserSessions();
-            $user_session = $user_session_model->findFirst([
-                'conditions'=>'user-agent =? AND session = ?',
-                'bind'=>[Session::uagent_no_version(),Cookie::get(REMEMBER_ME_COOKIE_NAME)]
-            ]);
+            $user_session = UserSessions::getFromCooke();
+            did($user_session);
 
             if ($user_session->user_id !=''){
                 $user = new self((int)$user_session->user_id);
             }
-            $user->login();
+
+            if($user){
+                $user->login();
+            }
+
             return self::$currentLoggedInUser;
         }
 
         public function logout(){
-            $user_agent =  Session::uagent_no_version();
-            $this->_db->query("DELETE FROM user_sessions WHERE  user_id=? AND user_agent =?",[$this->id, $user_agent]);
-            Session::delete(CURRENT_USER_SESSION_NAME);
+        $userSession = UserSessions::getFromCooke();
+        if(!$userSession){
+            $userSession->delete();
+        }
+        Session::delete(CURRENT_USER_SESSION_NAME);
             if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)){
                 Cookie::delete(REMEMBER_ME_COOKIE_NAME);
             }

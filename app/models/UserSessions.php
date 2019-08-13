@@ -14,4 +14,18 @@ class UserSessions extends Model
         parent::__construct($table);
     }
 
+
+    public static function getFromCooke(){
+        if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)){
+            $userSesion = new self();
+            $userSesion  = $userSesion->findFirst([
+                'conditions'=>"user_agent =? AND session = ?",
+                'build'=>[Session::uagent_no_version(), Cookie::get(REMEMBER_ME_COOKIE_NAME)]
+                ]);
+        }
+        if (!$userSesion)return false;
+        return  $userSesion;
+    }
+
+
 }
