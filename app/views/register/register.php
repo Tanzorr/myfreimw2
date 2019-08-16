@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-md-offset-3 well">
             <form action="" class="form" method="post">
-                <div class="bg-danger"><?=$this->displayErrors ?></div>
+                <div class=""><?=$this->displayErrors ?></div>
                 <div class="form-group">
                     <label for="fname">First name</label>
                     <input type="text" id="fname" name="fname" class="form-control" value="<?=$this->post['fname']?>">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" class="form-control" value="<?= $this->post['email']?>">
+                    <input type="text" id="email" name="email" class="form-control" value="<?= $this->post['email']?>">
                 </div>
                 <div class="form-group">
                     <label for="usernamne">username</label>

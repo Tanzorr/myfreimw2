@@ -21,6 +21,14 @@ class Router
         $action_name = (isset($url[0]) && $url[0] != '')? $url[0] : 'index';
         array_shift($url);
 
+        //acl check
+        $grantAccess = self::hasAccess($controller_name, $action_name);
+
+        if (!$grantAccess ){
+            $controller_name = $controller = ACCESS_RESTRICTED;
+            $action = 'indexAction';
+        }
+
 
 
         //params
@@ -48,5 +56,23 @@ class Router
             echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';
             echo '</noscript>';exit;
         }
+    }
+
+    public static function hasAccess($controller_name, $action_name='index'){
+        $acl_file= file_get_contents(ROOT.DS.'app'.DS.'acl.json');
+        $acl=json_decode($acl_file,true);
+        $current_user_acls = ["Guest"];
+        $grantAccess= false;
+
+        if (Session::exist(CURRENT_USER_SESSION_NAME)){
+            $current_user_acls[]="LoggedIn";
+            foreach (currentUser()->acls()as $a){
+                $current_user_acls[]=$a;
+            }
+        }
+
+       // did($current_user_acls);
+
+        return true;
     }
 }

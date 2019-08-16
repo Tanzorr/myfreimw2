@@ -1,0 +1,16 @@
+{
+  "Guest":{
+    "denied":{},
+    "Home":["*"],
+    "Register": ["login", "register"],
+    "Register":["*"]
+   },
+  "LoggeIn": {
+     "denid":{
+       "Register": ["login","register"]
+     },
+    "Register":["logout"],
+    "Totls":["*"]
+   }
+
+}

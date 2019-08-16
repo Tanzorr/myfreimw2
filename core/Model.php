@@ -83,14 +83,17 @@ class Model
         }
         //detemine whether to update or insert
 
-        if(property_exists($this,'id') && $this->id !== ''){
+
+        if(property_exists($this,'id') && $this->id !== null){
+
             return$this->update($this->id, $fildes);
         }else{
+
             return $this->insert($fildes);
         }
     }
 
-    public  function insert($fieldes){
+    public  function insert($fields){
         if(empty($fields)) return false;
         return $this->_db->insert($this->_table, $fields);
     }
