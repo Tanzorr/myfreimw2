@@ -73,7 +73,7 @@ class User extends Model
 
         public function logout(){
         $userSession = UserSessions::getFromCooke();
-        if(!$userSession){
+        if($userSession){
             $userSession->delete();
         }
         Session::delete(CURRENT_USER_SESSION_NAME);
@@ -93,8 +93,13 @@ class User extends Model
         }
 
         public function acls(){
-            if(empty($this->acl)) return [];
-            return json_decode($this->acl, true);
+            if(empty($this->acl)){
+                return [];
+            } else{
+                //var_dump($this->acl); die();
+                return json_decode($this->acl, true);
+            }
+
         }
 
 

@@ -23,9 +23,15 @@ class UserSessions extends Model
                 'build'=>[Session::uagent_no_version(), Cookie::get(REMEMBER_ME_COOKIE_NAME)]
                 ]);
         }
-        if (!$userSesion)return false;
-        return  $userSesion;
-    }
+
+
+        if (!isset($userSesion)){
+            return false;
+        }else{
+            return  $userSesion;
+        }
+        }
+
 
 
 }

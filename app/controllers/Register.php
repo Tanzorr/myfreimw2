@@ -91,7 +91,7 @@ class Register extends Controller
                     'email'=>[
                         'display'=>'Email',
                         'required'=>true,
-                      //  'unique'=>'users',
+                       'unique'=>'users',
                         'max'=>150,
                         'valid_email'=>true
                     ],

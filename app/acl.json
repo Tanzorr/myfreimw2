@@ -1,11 +1,11 @@
 {
   "Guest":{
-    "denied":{},
+    "denied":[],
     "Home":["*"],
     "Register": ["login", "register"],
     "Register":["*"]
    },
-  "LoggeIn": {
+  "LoggedIn": {
      "denid":{
        "Register": ["login","register"]
      },
