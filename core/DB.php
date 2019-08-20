@@ -20,7 +20,7 @@ class DB
             $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
            
-            echo "Connected successfully";
+            
         }
         catch(PDOException $e)
         {
@@ -97,7 +97,7 @@ class DB
         if (array_key_exists('limit',$params)){
             $order = " LIMIT ".$params['limit'];
         }
-            var_dump($conditionString);
+
         $sql = "SELECT *FROM {$table}{$conditionString}{$order}{$limit}";
         if ($this->query($sql,$bind)){
             if(!$this->count($this->_result)) return false;

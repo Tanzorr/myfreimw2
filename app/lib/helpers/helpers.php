@@ -22,6 +22,14 @@ function currentUser(){
     return User::currentLoggedUser();
 }
 
+function curentPage(){
+    $curentPage =  $_SERVER['REQUEST_URI'];
+    if ($curentPage == PROOT || $curentPage == PROOT.'home/index'){
+        $curentPage = 'HomeController';
+    }
+    return $curentPage;
+}
+
 function posted_values($post){
     $clean_ary = [];
     foreach ($post as $key=>$value){

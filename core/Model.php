@@ -49,6 +49,7 @@ class Model
 
 
     public  function find($params = []){
+            $params = $this->_softDeleteParams($params);
             $results = [];
             $resultsQuery =  $this->_db->find($this->_table, $params);
             foreach ($resultsQuery as $result){
@@ -60,7 +61,7 @@ class Model
     }
 
     public function findFirst($params = []) {
-//        $params = $this->_softDeleteParams($params);
+        $params = $this->_softDeleteParams($params);
 //        $resultQuery = $this->_db->findFirst($this->_table, $params,get_class($this));
 //        return $resultQuery;
         $resultQuery = $this->_db->findFirst($this->_table, $params);

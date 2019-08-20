@@ -6,7 +6,7 @@
  * Time: 13:48
  */
 
-class Restricted extends Controller
+class RestrictedController extends Controller
 {
     public function __construct($controller, $action)
     {

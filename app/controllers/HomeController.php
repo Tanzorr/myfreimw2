@@ -6,7 +6,7 @@
  * Time: 16:39
  */
 
-class Home extends Controller
+class HomeController extends Controller
 {
         public function __construct($controller, $action)
         {
@@ -14,7 +14,7 @@ class Home extends Controller
         }
 
         public function indexAction(){
-              did($_SESSION);
+
 
             $this->view->render('home/index');
         }

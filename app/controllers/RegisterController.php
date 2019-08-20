@@ -6,7 +6,7 @@
  * Time: 13:23
  */
 
-class Register extends Controller
+class RegisterController extends Controller
 {
 
     public function __construct($controller, $action)

@@ -6,7 +6,7 @@
     "Register":["*"]
    },
   "LoggedIn": {
-     "denid":{
+     "denied":{
        "Register": ["login","register"]
      },
     "Register":["logout"],

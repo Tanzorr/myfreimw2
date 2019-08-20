@@ -11,6 +11,7 @@ class View
     protected  $_head, $_body, $_siteTitle = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT;
     public function __construct()
     {
+      //  var_dump($this); die();
     }
 
     public function render($viewName)
@@ -39,6 +40,7 @@ class View
         $this->_outputBuffer = $type;
         ob_start();
     }
+
 
     public function end(){
         if ($this->_outputBuffer = 'head'){
