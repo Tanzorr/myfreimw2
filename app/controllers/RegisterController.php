@@ -44,6 +44,7 @@ class RegisterController extends Controller
 
                   if ($user && $_POST['password'] === $user->password ){
                       $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true :false;
+
                     $user->login($remember);
                     Router::redirect('/');
                 }else{

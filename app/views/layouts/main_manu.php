@@ -25,7 +25,7 @@
             ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                       <?= $key ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <?php foreach ($val as $k=>$v):
@@ -40,7 +40,7 @@
                             ?>
                             <li><a class="<?=$active?> nav-link" href="/<?=$v?>"><?=$k?></a></li>
                             <?php endif;?>
-                            <li class="nav-item"><a href="" class="nav-link">home</a></li>
+
                         <?php endforeach;?>
                     </ul>
                 </li>

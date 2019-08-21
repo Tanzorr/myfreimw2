@@ -24,7 +24,7 @@ class Router
         //acl check
         $grantAccess = self::hasAccess($controller_name, $action_name);
 
-       // var_dump($grantAccess);
+
 
         if (!$grantAccess ){
             $controller_name = $controller = ACCESS_RESTRICTED;
@@ -35,7 +35,7 @@ class Router
 
         //params
         $queryParams = $url;
-        $controller =  $controller;
+       // $controller =  $controller;
         $dispatch = new $controller($controller_name, $action);
 
         if(method_exists($controller, $action)) {
@@ -67,15 +67,19 @@ class Router
         $grantAccess= false;
 
         if (Session::exist(CURRENT_USER_SESSION_NAME)){
+
             $current_user_acls[]="LoggedIn";
             foreach (currentUser()->acls() as $a){
                 $current_user_acls[]=$a;
+
             }
         }
 
         foreach ($current_user_acls as $level){
+
             if(array_key_exists($level, $acl)&& array_key_exists($controller_name, $acl[$level])){
                 if (in_array($action_name, $acl[$level][$controller_name]) || in_array("*",$acl[$level][$controller_name])){
+
                     $grantAccess = true;
                     break;
                 }
@@ -88,7 +92,9 @@ class Router
         foreach ($current_user_acls as $level){
             $dinied = $acl[$level]['denied'];
 
+
             if (!empty($dinied) && array_key_exists($controller_name, $dinied) && in_array($action_name, $dinied[$controller_name])){
+
                 $grantAccess = false;
                 break;
             }

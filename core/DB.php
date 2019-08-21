@@ -91,7 +91,7 @@ class DB
         }
         //order
         if (array_key_exists('order',$params)){
-            $order = 'ORDER BY '.$params['order'];
+            $order = ' ORDER BY '.$params['order'];
         }
         //limit
         if (array_key_exists('limit',$params)){
@@ -99,6 +99,7 @@ class DB
         }
 
         $sql = "SELECT *FROM {$table}{$conditionString}{$order}{$limit}";
+
         if ($this->query($sql,$bind)){
             if(!$this->count($this->_result)) return false;
             return true;

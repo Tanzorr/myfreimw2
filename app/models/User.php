@@ -96,7 +96,7 @@ class User extends Model
             if(empty($this->acl)){
                 return [];
             } else{
-                //var_dump($this->acl); die();
+
                 return json_decode($this->acl, true);
             }
 

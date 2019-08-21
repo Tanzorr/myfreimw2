@@ -10,8 +10,15 @@ function inputBlok($type, $label, $name, $value='', $inputAttrs=[], $divAttes=[]
     $divString  = stringifyAttrs($divAttes);
     $inputString = stringifyAttrs($inputAttrs);
     $html='<div'. $divString. '>';
-    $html.='<inpuat type="'.$type.'"name="'.$name.'" value="'.$value.'"'.$inputString.'/>';
+    $html.='<label for="'.$name.'">'.$label.'</label>';
+    $html.='<input type="'.$type.'"id = "'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.'/>';
     $html .='</div>';
+    return $html;
+}
+
+function submitTag($buttonText, $inputAttrs=[]){
+    $inputString= stringifyAttrs($inputAttrs);
+    $html = '<input type="submit" value="'.$buttonText.'"'.$inputString.'/>';
     return $html;
 }
 
