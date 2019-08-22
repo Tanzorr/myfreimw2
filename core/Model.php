@@ -48,21 +48,15 @@ class Model
         foreach ($resultsQuery as $result){
             $obj = new $this->_modelName($this->_table);
             $obj->populateObjData($result);
-           // var_dump($obj); die();
+
             $results[] = $obj;
         }
         return $results;
     }
     public function findFirst($params = []) {
         $params = $this->_softDeleteParams($params);
-//        $resultQuery = $this->_db->findFirst($this->_table, $params,get_class($this));
-//        return $resultQuery;
-        $resultQuery = $this->_db->findFirst($this->_table, $params);
-        $result =  new  $this->_modelName($this->_table);
-        if ($resultQuery){
-            $result->populateObjData($resultQuery);
-        }
-        return $result;
+        $resultQuery = $this->_db->findFirst($this->_table, $params,get_class($this));
+        return $resultQuery;
     }
     public  function findById($id){
         return $this->findFirst(['conditions'=>"id=?", 'bind'=>[$id]]);

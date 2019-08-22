@@ -16,10 +16,45 @@ class ContactsController extends Controller
     }
 
     public function indexAction(){
-        $contacts= $this->ContactsModel->findByUserId(currentUser()->id,['order'=>'lname, fname']);
+        $contacts= $this->ContactsModel->find(['order'=>'lname, fname']);
 
         $this->view->contacts = $contacts;
 
         $this->view->render('contacts/index');
     }
+
+    public function addAction(){
+        $contact= new Contacts('contacts');
+        $valifation = new Validate();
+        if ($_POST){
+            $contact->assign($_POST);
+            $valifation->check($_POST, Contacts::$addValidation);
+            if ($valifation->passed()){
+                $contact->user_id = currentUser()->id;
+                $contact->deleted = 0;
+                $contact->save();
+                Router::redirect('/contacts');
+            }
+
+        }
+        $this->view->contact = $contact;
+        $this->view->displayErrors = $valifation->displayErrors();
+        $this->view->postAction = '/contacts'.DS.'add';
+        $this->view->render('contacts/add');
+    }
+
+    public function detailsAction($id){
+
+
+
+        $contact= $this->ContactsModel->findByUserId((int)$id);
+
+        if (!$contact){
+            Router::redirect('contacts');
+        }
+        $this->view->contact = $contact;
+        $this->view->render('contacts/details');
+    }
+
+
 }

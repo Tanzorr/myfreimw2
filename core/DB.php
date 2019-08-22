@@ -67,8 +67,6 @@ class DB
         $bind = [];
         $order='';
         $limit='';
-
-
         //conditions
         if (isset($params['conditions'])){
             if(is_array($params['conditions'])){
@@ -99,6 +97,8 @@ class DB
         }
 
         $sql = "SELECT *FROM {$table}{$conditionString}{$order}{$limit}";
+            echo 'bind';
+       var_dump($bind);
 
         if ($this->query($sql,$bind)){
             if(!$this->count($this->_result)) return false;
@@ -117,7 +117,7 @@ class DB
     }
 
     public  function findFirst($table, $params=[]){
-        if ($this->_read($table, $fildes =[])){
+        if ($this->_read($table, $params =[])){
             return $this->first();
         }
         return false;

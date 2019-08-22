@@ -19,7 +19,7 @@
 <body>
 <?php include 'main_manu.php'?>
 <?= $this->content('head')?>
-<div class="container-fluid" style="min-height: cal(100%-125px);">
+<div class="container" style="min-height: calc(100%-125px);">
 
         <?= $this->content('body');?>
 
